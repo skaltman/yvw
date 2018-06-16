@@ -1,0 +1,15 @@
+Package: yvw
+Title: Helpful Functions for YVW Study
+Version: 0.0.0.9000
+Authors@R: person("Sara", "Altman", email = "skaltman@stanford.edu", role = c("aut", "cre"))
+Description: Functions for tidying data, plotting, and conducting analyses for YVW study.
+Depends: R (>= 3.4.3)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:
+    tidyverse,
+    readxl,
+    langcog,
+    broom
+RoxygenNote: 6.0.1
