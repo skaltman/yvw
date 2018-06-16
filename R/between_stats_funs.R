@@ -28,16 +28,20 @@ format_for_between_stats <- function(data, variable, variable_option) {
     mutate_all(~ round(., 0))
 }
 
+#' Get a p-value from a Fisher's exact test
 #'
+#' @param table A table
 get_fishers_p_value <- function(table, digits = 4) {
   fisher.test(table)[[1]] %>% round(digits)
 }
 
-# Returns a tibble with 5 variables -- num_bb, num_bt, perc_bb, perc_bt, and p_value
-# num_bb and num_bt are the number of children with variable == variable_option in each condition (e.g., firstChoice == "Confederate's toy")
-# perc_bb and perc_bt are num_bb and num_bt divided by the number of children in each condition
-# p_value is the p-value from a fisher's exact test that tests for differences in `variable` by condition
-# This will work for first reponse, helpfulness, correctness, etc.
+#' Returns a tibble summarizing the results of a between conditions comparison
+#' with a Fisher's exact test
+#'
+#' @param data Formatted data from exp 1, 2, or 3
+#' @param variable The variable you want to compare values of
+#' @param variable_option The value of the variable you want the results in terms of
+#' @param digits Number of significant digits to round the p-value to (default is 4)
 between_condition_stats <- function(data, variable, variable_option, digits = 4) {
   variable <- enquo(variable)
 
@@ -52,18 +56,22 @@ between_condition_stats <- function(data, variable, variable_option, digits = 4)
                digits = digits))
 }
 
+#' Get between condition stats for helpfulness data
 between_condition_helpful <- function(data, digits = 4) {
   between_condition_stats(data, helpfulCategory, "Helpful", digits = digits)
 }
 
+#' Get between conditions stats for first response data
 between_condition_response <- function(data, digits = 4) {
   between_condition_stats(data, firstChoice, "Other toy", digits = digits)
 }
 
+#' Get between condition stats for correctness data
 between_condition_correct <- function(data, digits = 4) {
   between_condition_stats(data, firstChoiceCorrect, "1", digits = digits)
 }
 
+#' Get between condition stats for flip data
 between_condition_flip <- function(data, digits = 4) {
   between_condition_stats(data, flip, "TRUE", digits = digits)
 }
