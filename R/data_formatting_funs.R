@@ -1,8 +1,5 @@
-#' Format choice data
-#'
-#' @param data A tibble consisting of the raw data from exp 1, 2, or 3
-#' @return A tibble
-#'
+#' Format choice/behavior data so that variables names and factor levels are
+#' consistent across all three experiments.
 format_data <- function(data) {
   data %>%
     rename_all(funs(str_replace(., "1st", "first"))) %>%
@@ -26,11 +23,6 @@ format_data <- function(data) {
            age = as.double(age))
 }
 
-#' Format social referencing data
-#'
-#' @param data A tibble consisting of the raw social referencing data from exp 1, 2, or 3
-#' @return A tibble
-#'
 format_sr_data <- function(data, original_data) {
   data %>%
     filter_at(vars(orient_body, orient_toy, gaze, point, verbal),
