@@ -10,6 +10,7 @@ LazyData: true
 Imports:
     tidyverse,
     readxl,
-    langcog,
     broom
+DevPackage:
+    langcog/langcog
 RoxygenNote: 6.0.1
